@@ -1,0 +1,9 @@
+A transaction contains:
+
+Inputs
+- Signed input scripts
+- Source of the coins (previous outputs we're spending)
+
+Outputs
+- Output scripts that dictate conditions for spending the coins
+- Destination addresses
