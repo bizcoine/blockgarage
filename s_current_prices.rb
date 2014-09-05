@@ -1,11 +1,27 @@
 # prints the current prices for Bitcoin, Dogecoin, and Litecoin against USD from all available exchanges
 
+require 'httpclient'
+require 'json'
+
+api_key = '0223-428b-9ecd-120a' # bitcoin from block.io
+
+response = HTTPClient.new.get("https://block.io/api/v1/get_current_price/?api_key=#{api_key}&price_base=USD")
+response = JSON.parse(response.content)
+
 # get prices for Bitcoin
 
-# get prices for Dogecoin
+puts "The request has succeeded" if response['status'].eql?('success')
 
-# get prices for Litecoin
+if (response['status'].eql?('success'))
+  # print the prices
 
-# print prices for all coins
+  prices = response['data']['prices']
+
+  prices.each do |current_price|
+    # print out the price and exchange name
+    puts "Price from #{current_price['exchange']} is #{current_price['price']} USD/BTC"
+  end
+
+end
 
 # exit
